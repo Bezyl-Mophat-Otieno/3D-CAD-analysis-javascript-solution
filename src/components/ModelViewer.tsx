@@ -1,18 +1,21 @@
 import { useState, Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera, Grid, Environment, Stats } from '@react-three/drei';
-import Model from './Model';
+import Model, { MeasurementData } from './Model';
 import Sidebar from './Sidebar';
 import Toolbar from './Toolbar';
+import EngineeringAnalysis from './EngineeringAnalysis';
 
 export default function ModelViewer() {
   const [modelUrl, setModelUrl] = useState<string>('');
-  const [measurements, setMeasurements] = useState<Record<string, number> | null>(null);
+  const [measurements, setMeasurements] = useState<MeasurementData | null>(null);
   const [showGrid, setShowGrid] = useState(true);
   const [showWireframe, setShowWireframe] = useState(false);
   const [showMeasurements, setShowMeasurements] = useState(true);
   const [viewMode, setViewMode] = useState<'orthographic' | 'perspective'>('perspective');
   const [selectedUnit, setSelectedUnit] = useState<'mm' | 'cm' | 'in'>('mm');
+  const [showAnalysis, setShowAnalysis] = useState(false);
+  const [analysisType, setAnalysisType] = useState<'stress' | 'thermal' | 'motion' | null>(null);
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -20,22 +23,6 @@ export default function ModelViewer() {
       const url = URL.createObjectURL(file);
       setModelUrl(url);
     }
-  };
-
-  const convertMeasurement = (value: number): number => {
-    switch (selectedUnit) {
-      case 'cm': return value / 10;
-      case 'in': return value / 25.4;
-      default: return value;
-    }
-  };
-
-  const handleMeasurements = (data: Record<string, number>) => {
-    const convertedData = Object.entries(data).reduce((acc, [key, value]) => ({
-      ...acc,
-      [key]: convertMeasurement(value)
-    }), {});
-    setMeasurements(convertedData);
   };
 
   return (
@@ -46,11 +33,15 @@ export default function ModelViewer() {
         showMeasurements={showMeasurements}
         viewMode={viewMode}
         selectedUnit={selectedUnit}
+        showAnalysis={showAnalysis}
+        analysisType={analysisType}
         onToggleGrid={() => setShowGrid(!showGrid)}
         onToggleWireframe={() => setShowWireframe(!showWireframe)}
         onToggleMeasurements={() => setShowMeasurements(!showMeasurements)}
         onViewModeChange={setViewMode}
         onUnitChange={setSelectedUnit}
+        onToggleAnalysis={() => setShowAnalysis(!showAnalysis)}
+        onAnalysisTypeChange={setAnalysisType}
       />
       
       <div className="flex-1 flex">
@@ -58,6 +49,8 @@ export default function ModelViewer() {
           onFileUpload={handleFileUpload} 
           measurements={measurements}
           selectedUnit={selectedUnit}
+          showAnalysis={showAnalysis}
+          analysisType={analysisType}
         />
         
         <div className="flex-1 relative">
@@ -95,13 +88,19 @@ export default function ModelViewer() {
                 />
               )}
               {modelUrl && (
-                <Model 
-                  url={modelUrl} 
-                  onMeasure={handleMeasurements}
-                  showWireframe={showWireframe}
-                  showMeasurements={showMeasurements}
-                  selectedUnit={selectedUnit}
-                />
+                <>
+                  <Model 
+                    url={modelUrl} 
+                    onMeasure={setMeasurements}
+                    showWireframe={showWireframe}
+                  />
+                  {showAnalysis && analysisType && (
+                    <EngineeringAnalysis
+                      type={analysisType}
+                      measurements={measurements}
+                    />
+                  )}
+                </>
               )}
             </Suspense>
             
