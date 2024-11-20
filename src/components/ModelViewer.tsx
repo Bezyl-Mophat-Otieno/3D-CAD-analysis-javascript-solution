@@ -27,7 +27,7 @@ export default function ModelViewer() {
 
   return (
     <div className="w-full h-screen flex flex-col">
-      <Toolbar
+      {/* <Toolbar
         showGrid={showGrid}
         showWireframe={showWireframe}
         showMeasurements={showMeasurements}
@@ -42,7 +42,7 @@ export default function ModelViewer() {
         onUnitChange={setSelectedUnit}
         onToggleAnalysis={() => setShowAnalysis(!showAnalysis)}
         onAnalysisTypeChange={setAnalysisType}
-      />
+      /> */}
       
       <div className="flex-1 flex">
         <Sidebar 

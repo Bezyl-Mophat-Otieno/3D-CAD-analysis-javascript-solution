@@ -76,7 +76,7 @@ export default function Sidebar({
 
   return (
     <div className="w-80 p-6 bg-white border-r border-gray-200 shadow-lg flex flex-col h-full">
-      <h2 className="text-2xl font-bold mb-6 flex items-center gap-2 text-gray-800">
+      <h2 className="text-2xl font-bold mb-6 mt-8 flex items-center gap-2 text-gray-800">
         <Cuboid className="w-7 h-7 text-blue-600" />
         3D Model Viewer
       </h2>
