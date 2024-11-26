@@ -94,11 +94,11 @@ export default function ModelViewer() {
                     onMeasure={setMeasurements}
                     showWireframe={showWireframe}
                   />
-                  {showAnalysis && analysisType && (
-                    <EngineeringAnalysis
-                      type={analysisType}
-                      measurements={measurements}
-                    />
+c                  {/*{showAnalysis && analysisType && (*/}
+                  {/*  <EngineeringAnalysis*/}
+                  {/*    type={analysisType}*/}
+                  {/*    measurements={measurements}*/}
+                  {/*  />*/}
                   )}
                 </>
               )}
