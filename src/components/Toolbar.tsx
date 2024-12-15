@@ -44,7 +44,7 @@ export default function Toolbar({
   onAnalysisTypeChange
 }: ToolbarProps) {
   return (
-    <div className="h-14 bg-white border-b border-gray-200 px-4 flex items-center justify-between">
+    <div className="h-14 bg-white border-b border-gray-200 px-4 flex items-center justify-center">
       <div className="flex items-center space-x-2">
         <button
           onClick={onToggleGrid}
@@ -92,61 +92,61 @@ export default function Toolbar({
 
         <div className="h-6 w-px bg-gray-300 mx-2" />
 
-        <div className="flex items-center space-x-1">
-          <button
-            onClick={() => {
-              if (!showAnalysis || analysisType !== 'stress') {
-                onAnalysisTypeChange('stress');
-                if (!showAnalysis) onToggleAnalysis();
-              } else {
-                onAnalysisTypeChange(null);
-                onToggleAnalysis();
-              }
-            }}
-            className={`p-2 rounded-lg hover:bg-gray-100 ${
-              showAnalysis && analysisType === 'stress' ? 'text-red-600' : 'text-gray-600'
-            }`}
-            title="Stress Analysis"
-          >
-            <Activity className="w-5 h-5" />
-          </button>
+        {/*<div className="flex items-center space-x-1">*/}
+        {/*  <button*/}
+        {/*    onClick={() => {*/}
+        {/*      if (!showAnalysis || analysisType !== 'stress') {*/}
+        {/*        onAnalysisTypeChange('stress');*/}
+        {/*        if (!showAnalysis) onToggleAnalysis();*/}
+        {/*      } else {*/}
+        {/*        onAnalysisTypeChange(null);*/}
+        {/*        onToggleAnalysis();*/}
+        {/*      }*/}
+        {/*    }}*/}
+        {/*    className={`p-2 rounded-lg hover:bg-gray-100 ${*/}
+        {/*      showAnalysis && analysisType === 'stress' ? 'text-red-600' : 'text-gray-600'*/}
+        {/*    }`}*/}
+        {/*    title="Stress Analysis"*/}
+        {/*  >*/}
+        {/*    <Activity className="w-5 h-5" />*/}
+        {/*  </button>*/}
 
-          <button
-            onClick={() => {
-              if (!showAnalysis || analysisType !== 'thermal') {
-                onAnalysisTypeChange('thermal');
-                if (!showAnalysis) onToggleAnalysis();
-              } else {
-                onAnalysisTypeChange(null);
-                onToggleAnalysis();
-              }
-            }}
-            className={`p-2 rounded-lg hover:bg-gray-100 ${
-              showAnalysis && analysisType === 'thermal' ? 'text-orange-600' : 'text-gray-600'
-            }`}
-            title="Thermal Analysis"
-          >
-            <Thermometer className="w-5 h-5" />
-          </button>
+        {/*  <button*/}
+        {/*    onClick={() => {*/}
+        {/*      if (!showAnalysis || analysisType !== 'thermal') {*/}
+        {/*        onAnalysisTypeChange('thermal');*/}
+        {/*        if (!showAnalysis) onToggleAnalysis();*/}
+        {/*      } else {*/}
+        {/*        onAnalysisTypeChange(null);*/}
+        {/*        onToggleAnalysis();*/}
+        {/*      }*/}
+        {/*    }}*/}
+        {/*    className={`p-2 rounded-lg hover:bg-gray-100 ${*/}
+        {/*      showAnalysis && analysisType === 'thermal' ? 'text-orange-600' : 'text-gray-600'*/}
+        {/*    }`}*/}
+        {/*    title="Thermal Analysis"*/}
+        {/*  >*/}
+        {/*    <Thermometer className="w-5 h-5" />*/}
+        {/*  </button>*/}
 
-          <button
-            onClick={() => {
-              if (!showAnalysis || analysisType !== 'motion') {
-                onAnalysisTypeChange('motion');
-                if (!showAnalysis) onToggleAnalysis();
-              } else {
-                onAnalysisTypeChange(null);
-                onToggleAnalysis();
-              }
-            }}
-            className={`p-2 rounded-lg hover:bg-gray-100 ${
-              showAnalysis && analysisType === 'motion' ? 'text-blue-600' : 'text-gray-600'
-            }`}
-            title="Motion Analysis"
-          >
-            <Move className="w-5 h-5" />
-          </button>
-        </div>
+        {/*  <button*/}
+        {/*    onClick={() => {*/}
+        {/*      if (!showAnalysis || analysisType !== 'motion') {*/}
+        {/*        onAnalysisTypeChange('motion');*/}
+        {/*        if (!showAnalysis) onToggleAnalysis();*/}
+        {/*      } else {*/}
+        {/*        onAnalysisTypeChange(null);*/}
+        {/*        onToggleAnalysis();*/}
+        {/*      }*/}
+        {/*    }}*/}
+        {/*    className={`p-2 rounded-lg hover:bg-gray-100 ${*/}
+        {/*      showAnalysis && analysisType === 'motion' ? 'text-blue-600' : 'text-gray-600'*/}
+        {/*    }`}*/}
+        {/*    title="Motion Analysis"*/}
+        {/*  >*/}
+        {/*    <Move className="w-5 h-5" />*/}
+        {/*  </button>*/}
+        {/*</div>*/}
       </div>
 
       <div className="flex items-center space-x-4">
